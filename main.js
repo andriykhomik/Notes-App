@@ -52,10 +52,3 @@ function updateLS(){
 
     notesText.forEach((note, key) => localStorage.setItem(key.toString(), note.value));
 }
-
-
-
-
-
-
-
