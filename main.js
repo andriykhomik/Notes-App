@@ -1,9 +1,9 @@
 const add = document.querySelector('#add');
 
-if (localStorage.length > 0){
-    for (let i = 0; i < localStorage.length; i++) {
-        addNewNote(localStorage.getItem(i.toString()));
-    }
+const notes = JSON.parse(localStorage.getItem('notes'));
+
+if (notes){
+    notes.forEach(note => addNewNote(note));
 }
 
 add.addEventListener('click', ()=> addNewNote());
@@ -11,6 +11,7 @@ add.addEventListener('click', ()=> addNewNote());
 function addNewNote(text = ''){
 
     const note = document.createElement('div');
+
     note.classList.add('note');
     note.innerHTML = `
         <div class="tools">
@@ -47,13 +48,10 @@ function addNewNote(text = ''){
 }
 
 function updateLS(){
-    localStorage.clear();
     const notesText = document.querySelectorAll('textarea');
     const notes = [];
-    notesText.forEach((note) => notes.push(note.value));
-    notes.forEach((value, key)=> {
-        localStorage.setItem(key.toString(), value);
-    })
+    notesText.forEach(note=> notes.push(note.value));
+    localStorage.setItem('notes', JSON.stringify(notes));
 }
 
 
