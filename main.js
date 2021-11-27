@@ -49,11 +49,8 @@ function addNewNote(text = ''){
 function updateLS(){
     localStorage.clear();
     const notesText = document.querySelectorAll('textarea');
-    const notes = [];
-    notesText.forEach((note) => notes.push(note.value));
-    notes.forEach((value, key)=> {
-        localStorage.setItem(key.toString(), value);
-    })
+
+    notesText.forEach((note, key) => localStorage.setItem(key.toString(), note.value));
 }
 
 
